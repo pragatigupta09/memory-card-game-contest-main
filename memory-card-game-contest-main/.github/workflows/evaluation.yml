@@ -1,0 +1,39 @@
+name: Evaluate Memory Game
+
+# Trigger the action on pull request events
+on:
+  pull_request:
+    branches:
+      - main  # Adjust to your default branch name
+
+jobs:
+  evaluate:
+    runs-on: ubuntu-latest
+    
+    steps:
+      # Check out the code from the repository
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+        
+      # Set up Node.js (if your evaluation script uses Node.js)
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'  # Adjust to the Node.js version you are using
+
+      # Install dependencies (if any, like Jest or other testing libraries)
+      - name: Install Dependencies
+        run: |
+          npm install
+
+      # Run the evaluation script (update this if the evaluation is done with a custom script)
+      - name: Run Evaluation
+        run: |
+          # Run your evaluation script, adjust command if needed
+          node evaluate.js
+
+      # Optionally, notify or show status
+      - name: Show Evaluation Results
+        run: |
+          # Optionally, add commands to display results or notify (e.g., with a message or email)
+          echo "Evaluation completed."
